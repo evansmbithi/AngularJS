@@ -1,2 +1,2 @@
 # AngularJS
-AngularJS test
+Single Page Web Applications with AngularJS
