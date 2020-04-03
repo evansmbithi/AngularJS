@@ -1,0 +1,135 @@
+In this lecture, we're going to see how to install AngularJS into your HTML page and
+how to write our very first AngularJS application.
+So right now, I'm located in my Atom editor, and I'm looking at the Lecture04
+folder, which is located in the examples in the fullstack-course5 folder.
+I also pre-started my Browsersync.
+So on the right, you see the Browsersync basically showing us so
+far just an empty page from our index.html that we started.
+So the very first thing we need to do is we need to download the AngularJS library
+itself.
+So let's go to the browser and we'll switch to this tab.
+And I already preloaded angularjs.org.
+So what you want to do is go to Develop and click on Download.
+And here, it will tell you all the different versions of AngularJS.
+Now, since this course is based on AngularJS 1, not AngularJS 2,
+do not choose anything that has 2 point and so on next to it.
+Instead, find the latest version of AngularJS 1 point something and
+click on that, and
+you'll see a whole bunch of different packages that AngularJS provides.
+What you want to look for is the one that just is very plain, says angular.js.
+Well, this is actually the unminified version,
+the one that has all the spacing in it and all the full named variable names.
+But in order to save bandwidth, we're going to go ahead and grab angular.min.js.
+And you can see here, if I right-click and click Save Link As,
+I'll be able to point to the folder in which our lecture 4 is located.
+I already did that, so I'm not going to do that again.
+And you can see here that my angular.min.js is already in
+the Lecture04 folder.
+I also created an additional file where we're going to put our own logic,
+which is app.js.
+And in this point, it is just an empty JavaScript file.
+So the first thing we need to do is we need to reference those two files in our
+HTML page.
+Well, I already pre-made that, so I will go ahead and cut and paste it right here.
+So all we need to do is put two script tags, the first one is angular.min.js and
+the second one is app.js.
+And obviously, we want our app.js to follow angular.min.js,
+because this is HTML, and browsers interpret these lines sequentially.
+So since we're going to be using AngularJS inside of our app.js,
+we want that to be processed first and
+then be available to use inside app.js.
+Okay, so let's go ahead and go to our app.js.
+And we'll go ahead and hide the sidebar here.
+And let's write our very first AngularJS application.
+So the very first thing we're going to start with is,
+we're going to start with an IIFE, an immediately invoked function expression.
+If you don't remember what that is, please look in the previous course where it
+explains in detail why we want to do something like that.
+But in short,
+we want to make sure that no local variables bleed into the global scope.
+So once we've defined our IIFE, we're ready to start our AngularJS application.
+And the very first thing we want to do is define our main app,
+the thing that's going to be responsible for some chunk of HTML in our index.html.
+So the thing that AngularJS exposes on the global scope is really just one
+particular object, and that object is called angular.
+So Angular is able, we're able to now execute things on it.
+And one of the things we're able to do is say module, and define our module.
+And we'll call it myFirstApp.
+And the first thing that this module method takes is the name
+of our application.
+And the second is a list of dependencies that our module or
+our application is going to need, in the form of an array.
+In this case, we're going to just leave it as an empty array because we have
+no dependencies at this point at all, just a regular, plain AngularJS application.
+So when we go ahead and define that, we can now go ahead and
+hook up this myFirstApp into our index.html.
+So if we go to index.html, there's a special attribute that we could place
+really anywhere we want, but usually we want to put it on the very outer
+tag that you want the Angular application to be responsible for.
+And the attribute is called ng-app, which stands for Angular application.
+And we want to name it exactly the same way we named it in our app.js,
+which is myFirstApp.
+So when we save that, now it means that anything in this DOM tree, from
+the beginning where we mentioned ng-app to the end of that tag, which in this case
+is beginning html and end html, our Angular application is responsible for.
+So this module has now been bound,
+this AngularJS app has been bound to our HTML.
+Now, almost in all cases, you don't want to just stop there.
+What we want to do is we want to define another construct of Angular that will be
+responsible for a smaller portion of our page, for example, just this div.
+So where we're going to go is we're going to go to app.js, and we're going to
+go ahead and remove the semicolon and since module function returns module
+instance, we can just go ahead and chain the next call to .controller.
+And .controller function is really the way we define the view
+model of our view, our view being index.html.
+So it takes two things.
+Number one, it takes the name of our view model, or the name of our controller, and
+we'll call it MyFirstController.
+And it takes a function that defines the functionality for
+that particular controller.
+So when I save that right here, I now have my first controller available.
+Being that its functionality is defined by this function,
+which at this point is empty.
+It's available to be bound to our view, so let's go ahead and do that.
+Let's copy that and go to our index.html and say,
+ng-controller=MyFirstController.
+So when I do that now, everything below this div and
+until this div is closed is being controlled by this MyFirstController.
+Because Angular looks for this name inside of our app.js and sees that this name
+matches right here, this controller, it knows that the function responsible for
+that piece of functionality inside of our view is this function right here.
+So if I save that, and I should see no errors whatsoever.
+At this point, we haven't really implemented any functionality,
+but we have, at this point,
+bound things in our JavaScript to things that are in our index.html.
+So if you think back to what we discussed about view and the view model,
+this is that relationship.
+This index.html is really the view, or
+in this particular case, just this div is really a piece of a view.
+And this piece of the view is being bound to app.js, and
+in particular, being bound to this function defined by the controller.
+This binding or this binder is happening automatically, and
+it's done by AngularJS for you.
+There's one more best practice that I'd like to insert here that we should use
+from now on, and that is declaring our function with use strict, 'use strict'.
+And when we do that,
+we're enabling certain things to just protect us from making mistakes.
+For example, we know that the entire IIFE construct that we've put in here
+is there to protect us from bleeding things into the global scope.
+But what happens if I say, and I'll go ahead and
+comment this use strict for now, what happens if I say x = hello.
+Well, according to the rules of JavaScript, since x has not been defined
+with the var keyword, it will go ahead and define itself on the global scope.
+Now, usually that's not what we want to do, and
+we don't want these type of mistakes by accident to kind of slip by.
+So if we use strict, let's uncomment that now, and go ahead and save that,
+you'll see that the browser is complaining and saying that x is not defined.
+In other words, it's seeing that x is really defined inside of a function, yet
+it has no var keyword in front of it.
+And if I put the var keyword in front of it, it'll go ahead and
+not complain anymore.
+So from now on, we're going to use our IIFE,
+immediately invoked function expression, and we'll use 'use strict' to make
+sure we don't make any careless mistakes that will probably hurt us down the road.
+In the next lecture, we're going to see a little bit more about what this controller
+can do and how it can directly affect the view that is the index.html. 

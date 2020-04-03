@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html ng-app="myFirstApp">
   <head>
     <meta charset="utf-8">
-    <title>Hello Coursera</title>
+    <script src="angular.min.js">
+    /*browsers interpret lines sequentially
+      therefore since we want angular.js to be
+      processed inside app.js; we let it be processed
+      first so that it can be available to use
+      inside app.js
+
+    */
+    </script>
+    <script src="app.js"></script>
+    <title>My first AngularJS APP</title>
   </head>
   <body>
-    <h1>hello Coursera, I am thrilled about this course</h1>
+    <h1>My first AngularJS APP</h1>
+    <div ng-controller="myFirstController">
+      1. {{name}}                                <br/>
+      2. {{sayHello()}}                          <br/>
+      3. <input type="text" ng-model="name">
+      4. 
+
+    </div>
   </body>
 </html>

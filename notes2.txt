@@ -1,0 +1,84 @@
+[SOUND] Obviously,
+it would be pretty boring if all we could do with our Angular application is somehow
+magically connect our JavaScript to some piece of HTML page and
+really do nothing else with it.
+So really we need some sort of a mechanism for
+the view, which is our index.html, and for
+app.js, which contains our view model, to be able to share data.
+Right now, I'm located in the folder called Lecture05,
+which is located in the fullstack-course5/examples folder.
+And I've already set up my Browsersync so
+it's displaying the page that we're looking at, which is this index.html.
+In fact, let's give it a little bit of a better title than that.
+Let's give it an h1, and we'll tell it, My first AngularJS App so
+we can see something actually in the page.
+Okay, so let's go ahead and close the file browser inside Atom.
+And now what we're going to do is we're going to use a special object that
+AngularJS provides for us in order to share data between our view model and
+our view.
+And that special object is called $scope.
+Whenever, by the way, you see inside AngularJS a dollar sign in front of
+some variable name, it means that this is something that is reserved for
+Angular, this is something that Angular provides.
+There's nothing really stopping you from naming your own variables with the dollar
+sign, but the convention is for you not to do that, because Angular is reserving kind
+of the dollar sign for anything that it provides out of the box.
+So this scope variable right here, and
+we'll discuss later how the scope variable or how the scope object even gets here,
+can have properties defined on it that are going to be exposed to the view.
+So if I say, $scope.name, and say, Yaakov,
+this .name is actually now sitting on the scope, and
+this scope is available inside my ng-controller or
+anything below it or inside of it that this ng-controller is in charge of.
+So I can place an expression here, which is double curly braces or
+mustache or however you want to call these characters, and I could say, name.
+If I place name over here, since name is sitting on the scope, and
+the scope is defined right here with a name, the Angular framework will
+assume that this is something that it should look for on the scope.
+So if I save that, you'll see that all of a sudden, Yaakov here shows up in my page,
+because it looked on the scope, which is bound to this particular ViewModel,
+which is bound to this particular controller.
+And it's being displayed, therefore, right here between these two divs.
+Now, the value of name is not the only thing that we can reference here.
+We can reference whatever we want on the scope and
+then expose that to our index.html.
+So for example, I could go ahead and create a function, let's say,
+called sayHello, and it's going to be a function that
+returns Hello Coursera.
+So now, I could go back to my index.html, and instead of name, I could call that
+function, since again, scope is something that's assumed, I could just say,
+sayHello, not forget the parens, because this is a function, not just a value.
+And when I save that, and now we see, it says, Hello Coursera!
+Now, a more interesting case is for
+me to show you that I could declaratively bind a piece of HTML to my scope.
+So let's go ahead and erase that and put an input field here, and
+in this case it will be just a textbox.
+And I'll use a special Angular attribute called ng-model to
+tell it that I want the value of this input attribute to always be
+equal to something on my scope, something called name.
+So it will now assume that there's something on my scope called name.
+And if we go back and look,
+there is in fact something on my scope that's called name, and it's = "Yaakov".
+And if we go back to our index.html,
+we'll see that now we're binding that value to whatever the input value here is.
+And you see here in our HTML or
+in our web page, the Yaakov showed up as the value of this input box.
+Now, in fact, if we keep changing that, this is something that is changing
+actually the value that is attached to the name property on our scope.
+One quick way to determine that it's actually true is to not only bind this
+name value or this name property to this input element, but
+also output it right next to it.
+Let's say, inside my input is, and then we can just go ahead and output name.
+So if we save it, you can see, since we refreshed it, it said,
+inside my input is Yaakov.
+But as we change this, take a look as to what's going on with this variable.
+As we're going to change that, since this variable is completely bound to our
+$scope's name property, the second we change it, which is what this is doing,
+it's looking for any changes on the name property of our scope,
+is going to automatically change this name as well.
+So I could say, Coursera, and you could see,
+as I type, the other value that is being output through this expression,
+that we'll talk about a little bit later, is also being updated.
+So in this lecture, we spoke about how we could bind the data and
+share the data between our controller, our view model, and
+our view, which is represented in index.html. 
