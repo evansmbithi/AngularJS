@@ -1,23 +1,52 @@
-/* an IIFE, an immediately invoked function expression
-   we want to make sure that no local variables bleed
-   into the global scope.
-*/
 (function(){
   'use strict';
 
-var x = "hello";
+  angular.module('myFirstApp', [])
 
-angular.module('myFirstApp', [])
+  .controller('myFirstController', function($scope){
+    $scope.name="Evans";
+    $scope.sayHello = function(){
+      return "Hello World";
+    }
+  });
+})();
 
-.controller('myFirstController', function ($scope){
-/*anything with $ infront of a variable shows it's reserved for angular
-  $scope is a special object facilitates sharing of
-  data between the view model and the view
-*/
-$scope.name = "Evans";
-$scope.sayHello = function(){
-  return "Hello Coursera!";
-}
-});
+(function(){
+  'use strict';
 
+  var x = "Hello";
+
+  angular.module('trials', [])
+
+  .controller('firstController', function($scope){
+    $scope.name = "Evans";
+    $scope.sayHello = function(){
+      return x;
+    }
+  });
+})();
+
+(function(){
+  'use strict';
+
+  angular.module('NameCalculator', [])
+
+  .controller('NameCalculatorController', function($scope){
+    $scope.name = "";
+    $scope.totalValue = 0;
+
+    $scope.displayNumeric = function(){
+      var totalNameValue = calculateNumericForString($scope.name); //gets the total value
+      $scope.totalValue = totalNameValue;
+    };
+
+    function calculateNumericForString(string){
+      var totalStringValue = 0;
+      for (var i = 0; i < string.length; i++){
+        totalStringValue += string.charCodeAt(i);
+      }
+
+      return totalStringValue;
+    }
+  });
 })();

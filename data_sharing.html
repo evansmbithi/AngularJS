@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="trials">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="bootstrap.min.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+
+    <title>My trials</title>
+  </head>
+  <body>
+    <h1>AngularJS Trials</h1>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-sm-4">
+          <h5>Lecture 5: Sharing Data With The View Through Scope</h5>
+          <div ng-controller="firstController">
+            {{sayHello()}}  {{name}}  <br/>
+            <input type="text" ng-model="name" placeholder="Input name">
+          </div>
+        </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>
